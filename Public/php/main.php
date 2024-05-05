@@ -1,5 +1,11 @@
 <?php 
+
     session_start();
+
+    if (!isset($_SESSION['autenticacao']) || $_SESSION['autenticacao'] == false) {
+        header('Location: index.php');
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -11,21 +17,36 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/normalize.css">
-    <title>~FlowSphere - Login</title>
+    <title>~FlowSphere</title>
 </head>
 <body>
+
+    <div class="container-button-logoff">
+        <a class="button-logoff" href="../../Private/php/logoff.php">Deslogar</a>
+    </div>
     
     <div class="container container-fluid">
         <div class="row d-flex justify-content-center">
-            <div class="col-6 container-login">
-                <h1 class="mb-4 text-secondary">Login</h1>
-                <form action="../../Private/php/testLogin.php" method="post">
-                    <input type="text" name="login" class="form-control mb-2" placeholder="Insira seu login" required>
-                    <input type="text" name="password" class="form-control mb-3" placeholder="Insira sua senha" required>
-                    <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-secondary">Login</button>
-                    </div>
-                </form>
+            <div class="col-6">
+                <div class="d-grid gap-2 container-buttons-main">
+
+                    <!-- CREATE -->
+                    <?php 
+                        if (isset($_SESSION['dadoscadastrados']) && $_SESSION['dadoscadastrados'] == true) {
+                    ?>
+                    <p class="text-success textSuccess">
+                        Dados cadastrados com sucesso
+                    </p>
+                    <?php 
+                        unset($_SESSION['dadoscadastrados']);
+                        }
+                    ?>
+                    
+                    <a href="cadastrarFuncionario.php" class="btn btn-white border-black mb-4">Cadastrar Funcionário</a>
+
+                    <!-- READ -->
+                    <a href="listarFuncionarios.php" class="btn btn-white border-black mb-4">Lista de Funcionários</a>
+                </div>
             </div>
         </div>
     </div>

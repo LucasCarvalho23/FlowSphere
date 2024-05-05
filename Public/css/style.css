@@ -5,3 +5,30 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+.custom-background {
+  background-color: lightgray;
+}
+
+.container-login, .container-buttons-main, .container-create {
+  margin-top: 150px;
+}
+
+.container-button-logoff {
+  text-align: right;
+}
+
+.button-logoff {
+  text-decoration: none;
+  margin-right: 10px;
+  color: black;
+  font-size: 1em;
+}
+
+.button-logoff:hover {
+  font-size: 1.1em;
+}
+
+.textSuccess {
+  font-size: .8em;
+}

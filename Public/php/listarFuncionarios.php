@@ -1,5 +1,11 @@
 <?php 
+
     session_start();
+
+    if (!isset($_SESSION['autenticacao']) || $_SESSION['autenticacao'] == false) {
+        header('Location: index.php');
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -11,22 +17,49 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/normalize.css">
-    <title>~FlowSphere - Login</title>
+    <title>~FlowSphere - Lista de funcionários</title>
 </head>
 <body>
+
+    <div class="container-button-logoff">
+        <a class="button-logoff" href="../../Private/php/logoff.php">Deslogar</a>
+    </div>
     
     <div class="container container-fluid">
         <div class="row d-flex justify-content-center">
-            <div class="col-6 container-login">
-                <h1 class="mb-4 text-secondary">Login</h1>
-                <form action="../../Private/php/testLogin.php" method="post">
-                    <input type="text" name="login" class="form-control mb-2" placeholder="Insira seu login" required>
-                    <input type="text" name="password" class="form-control mb-3" placeholder="Insira sua senha" required>
-                    <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-secondary">Login</button>
+
+            <div class="col-6 mt-5">
+                <form action="../../Private/php/consultas.php?read" method="post" class="container-list">
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-dark">Listar</button>
                     </div>
                 </form>
             </div>
+
+            <?php 
+                if (isset($_SESSION['read']) && $_SESSION['read'] == true) {
+            ?>
+
+                <div class="col-8 mt-5">
+                    
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6">
+                                NOME 
+                            </div>
+                            <div class="col-3">
+                                update 
+                            </div>
+                            <div class="col-3">
+                                delete 
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            <?php } ?>
+
         </div>
     </div>
 
