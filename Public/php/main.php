@@ -35,13 +35,13 @@
                         if (isset($_SESSION['dadoscadastrados']) && $_SESSION['dadoscadastrados'] == true) {
                     ?>
                     <p class="text-success textSuccess">
-                        Dados cadastrados com sucesso
+                        <?php echo $_SESSION['retornocadastro']; ?>
                     </p>
                     <?php 
                         unset($_SESSION['dadoscadastrados']);
                         }
                     ?>
-                    
+
                     <a href="cadastrarFuncionario.php" class="btn btn-white border-black mb-4">Cadastrar Funcionário</a>
 
                     <!-- READ -->
